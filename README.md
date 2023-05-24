@@ -1,3 +1,5 @@
+[![Flutter Desktop Deployment](https://github.com/mpl/fluttertest/actions/workflows/deploy.yml/badge.svg)](https://github.com/mpl/fluttertest/actions/workflows/deploy.yml)
+
 # my_app
 
 A new Flutter project.

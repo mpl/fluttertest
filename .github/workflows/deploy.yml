@@ -54,12 +54,17 @@ jobs:
         run: flutter config --enable-windows-desktop
       - name: Build artifacts
         run: flutter build windows --release
-      - name: Package Release
-        uses: thedoctor0/zip-release@master
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
         with:
-          type: 'zip'
-          filename: fluttertest-${{github.ref_name}}-windows.zip
-          directory: build/windows/runner/Release
+          name: windows executable
+          path: build/windows/runner/Release/my_app.exe
+#      - name: Package Release
+#        uses: thedoctor0/zip-release@master
+#        with:
+#          type: 'zip'
+#          filename: fluttertest-${{github.ref_name}}-windows.zip
+#          directory: build/windows/runner/Release
 #      - name: Release to github
 #        uses: softprops/action-gh-release@v1
 #        env:
