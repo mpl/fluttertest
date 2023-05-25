@@ -1,13 +1,31 @@
 import 'dart:async';
 
+import 'dart:io' show Platform;
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite/sqflite.dart';
+
+/*
+Future main() async {
+
+  runApp(MyApp());
+}
+*/
+
 
 void main() async {
 	// Avoid errors caused by flutter upgrade.
 	// Importing 'package:flutter/widgets.dart' is required.
 	WidgetsFlutterBinding.ensureInitialized();
+
+	if (Platform.isWindows || Platform.isLinux) {
+		// Initialize FFI
+		sqfliteFfiInit();
+		// Change the default factory
+		databaseFactory = databaseFactoryFfi;
+	}
+
 	// Open the database and store the reference.
 	final dbpath = join(await getDatabasesPath(), 'doggie_database.db');
 	final database = openDatabase(
