@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:quick_usb/quick_usb.dart';
 
 void main() async {
 	// Avoid errors caused by flutter upgrade.
@@ -145,6 +146,12 @@ void main() async {
 	);
 	await insertDog(taz);
 	print(await dogs());
+
+	await QuickUsb.init();
+
+	var deviceList = await QuickUsb.getDeviceList();
+
+	await QuickUsb.exit();
 
 	runApp(const MyApp());
 }
