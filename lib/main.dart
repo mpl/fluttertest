@@ -1,4 +1,5 @@
 import 'src/myapp.dart';
+import 'fficheck.dart'; // TODO: move to src as well?
 
 import 'dart:async';
 import 'dart:io' show Platform;
@@ -10,6 +11,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:quick_usb/quick_usb.dart';
 
 void main() async {
+	testffi();
 	// Avoid errors caused by flutter upgrade.
 	// Importing 'package:flutter/widgets.dart' is required.
 	WidgetsFlutterBinding.ensureInitialized();
@@ -147,11 +149,14 @@ void main() async {
 	await insertDog(taz);
 	print(await dogs());
 
+/*
 	await QuickUsb.init();
 
 	var deviceList = await QuickUsb.getDeviceList();
+	print("DEVICES: $deviceList");
 
 	await QuickUsb.exit();
+*/
 
 	runApp(const MyApp());
 }
