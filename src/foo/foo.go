@@ -1,15 +1,12 @@
 // filename: foo.go
 package main
 
-// generate dyn lib with: go build -buildmode=c-shared -o foo.so foo.go
 import (
 	"C"
-	"fmt"
-	"log"
-
-	"github.com/hanwen/go-mtpfs/mtp"
-	"github.com/hanwen/usb"
-)
+	/*
+	   "github.com/hanwen/go-mtpfs/mtp"
+	   "github.com/hanwen/usb"
+	*/)
 
 //export GetKey
 func GetKey() *C.char {
@@ -17,6 +14,7 @@ func GetKey() *C.char {
 	return C.CString(theKey)
 }
 
+/*
 //export GetMTPInfo
 func GetMTPInfo() *C.char {
 	return C.CString(listMTPDevices())
@@ -37,18 +35,21 @@ func listMTPDevices() string {
 	for _, dev := range devs {
 		var info mtp.DeviceInfo
 		if err := dev.Open(); err != nil {
-			log.Fatal(err)
+			log.Printf("OPEN: %v\n", err)
+			continue
 		}
 		if err := dev.GetDeviceInfo(&info); err != nil {
-			log.Fatal(err)
+			log.Printf("GETINFO: %v\n", err)
+			continue
 		}
 		// TODO: handle closing error?
 		defer dev.Close()
+		println("INFO: ", info.String())
 		return info.String()
 	}
 	return ""
 }
+*/
 
 func main() {
-	// println(listMTPDevices())
 }
