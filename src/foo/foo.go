@@ -24,6 +24,13 @@ func GetMTPInfo() *C.char {
 	return C.CString(listMTPDevices())
 }
 
+//export GetFile
+func GetFile() *C.char {
+	// TODO: other signature than a string lol
+	getFile("Pictures/Screenshots/Screenshot_20171209-162420.png")
+	return C.CString("")
+}
+
 func listMTPDevices() string {
 	c := usb.NewContext()
 
@@ -223,8 +230,11 @@ func getFile(filePath string) error {
 */
 
 func main() {
-	println(listMTPDevices())
-	if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
-		println("ERROR: ", err.Error())
-	}
+	/*
+	   println(listMTPDevices())
+
+	   	if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
+	   		println("ERROR: ", err.Error())
+	   	}
+	*/
 }
