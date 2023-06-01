@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/hanwen/go-mtpfs/fs"
 	"github.com/hanwen/go-mtpfs/mtp"
 	"github.com/hanwen/usb"
 )
@@ -99,7 +98,7 @@ func getFile(filePath string) error {
 
 	id := sids.Values[0]
 
-	fd, err := dev.GetFileHandle(id, fs.NOPARENT_ID, filePath)
+	fd, err := dev.GetFileHandle(id, mtp.NOPARENT_ID, filePath)
 	if err != nil {
 		return err
 	}
