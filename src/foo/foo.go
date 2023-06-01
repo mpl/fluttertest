@@ -52,13 +52,13 @@ func listMTPDevices() string {
 			log.Printf("OPEN: %v\n", err)
 			continue
 		}
+		// TODO: handle closing error?
+		defer dev.Close()
 
 		if err := dev.GetDeviceInfo(&info); err != nil {
 			log.Printf("GETINFO: %v\n", err)
 			continue
 		}
-		// TODO: handle closing error?
-		defer dev.Close()
 		// println("INFO: ", info.String())
 		return info.String()
 	}

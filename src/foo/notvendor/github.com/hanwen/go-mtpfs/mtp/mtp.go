@@ -309,7 +309,7 @@ func (d *Device) RunTransaction(req *Container, rep *Container,
 		_, ok2 := err.(SyncError)
 		_, ok1 := err.(usb.Error)
 		if ok1 || ok2 {
-			log.Printf("fatal error %v; closing connection.", err)
+			log.Printf("transaction error %v; closing connection.", err)
 			d.Close()
 		}
 		return err
