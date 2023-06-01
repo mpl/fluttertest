@@ -114,6 +114,10 @@ func (d *Device) Done() {
 	d.dev = nil
 }
 
+func (d *Device) Claim() error {
+	return d.claim()
+}
+
 // Claims the USB interface of the device.
 func (d *Device) claim() error {
 	if d.h == nil {

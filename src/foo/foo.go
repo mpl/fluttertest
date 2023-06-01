@@ -46,15 +46,16 @@ func listMTPDevices() string {
 
 	for _, dev := range devs {
 		var info mtp.DeviceInfo
+
+		if err := dev.Claim(); err != nil {
+			log.Printf("CLAIMING: %v\n", err)
+		}
+
 		if err := dev.Open(); err != nil {
 			log.Printf("OPEN: %v\n", err)
 			continue
 		}
-		/*
-			if err := dev.Claim(); err != nil {
-				log.Fatalf("CLAIMING: %v\n", err)
-			}
-		*/
+
 		if err := dev.GetDeviceInfo(&info); err != nil {
 			log.Printf("GETINFO: %v\n", err)
 			continue
@@ -231,11 +232,11 @@ func getFile(filePath string) error {
 */
 
 func main() {
-	/*
-	   println(listMTPDevices())
+	println(listMTPDevices())
 
-	   	if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
-	   		println("ERROR: ", err.Error())
-	   	}
+	/*
+		if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
+			println("ERROR: ", err.Error())
+		}
 	*/
 }
