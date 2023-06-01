@@ -26,7 +26,9 @@ func GetMTPInfo() *C.char {
 //export GetFile
 func GetFile() *C.char {
 	// TODO: other signature than a string lol
-	getFile("Pictures/Screenshots/Screenshot_20171209-162420.png")
+	if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
+		return C.CString(fmt.Sprintf("GETFILE: %v", err))
+	}
 	return C.CString("")
 }
 

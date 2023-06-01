@@ -26,7 +26,8 @@ void testffi() {
 	ffi.Pointer<Utf8> theKey = getKey();
 	print(theKey.toDartString());
 
-	getFile();
+	ffi.Pointer<Utf8> theFile = getFile();
+	print(theFile.toDartString());
 
 //	ffi.Pointer<Utf8> mtpInfo = getMTPInfo();
 //	print(mtpInfo.toDartString());
