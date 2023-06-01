@@ -229,11 +229,11 @@ func getFile(filePath string) error {
 */
 
 func main() {
-	println(listMTPDevices())
-
 	/*
-		if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
-			println("ERROR: ", err.Error())
-		}
+		println(listMTPDevices())
+
+			if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
+				println("ERROR: ", err.Error())
+			}
 	*/
 }
