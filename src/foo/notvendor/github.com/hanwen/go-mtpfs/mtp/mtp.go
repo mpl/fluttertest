@@ -180,7 +180,7 @@ func (d *Device) Open() error {
 	// claim not supported on windows??
 	// 2023/06/01 13:02:56 USB: ClaimInterface 0x0, err: LIBUSB_ERROR_NOT_SUPPORTED
 	if runtime.GOOS == "windows" {
-		return nil
+		// return nil
 	}
 	return d.claim()
 }
