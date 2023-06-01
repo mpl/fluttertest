@@ -153,7 +153,6 @@ func (d *Device) Open() error {
 	if err != nil {
 		return err
 	}
-	defer d.claim()
 
 	if d.ifaceDescr.InterfaceStringIndex == 0 {
 		// Some of the win8phones have no interface field.

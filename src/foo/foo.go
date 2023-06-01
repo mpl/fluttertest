@@ -46,10 +46,7 @@ func listMTPDevices() string {
 
 	for _, dev := range devs {
 		var info mtp.DeviceInfo
-
-		if err := dev.Claim(); err != nil {
-			log.Printf("CLAIMING: %v\n", err)
-		}
+		dev.USBDebug = true
 
 		if err := dev.Open(); err != nil {
 			log.Printf("OPEN: %v\n", err)
