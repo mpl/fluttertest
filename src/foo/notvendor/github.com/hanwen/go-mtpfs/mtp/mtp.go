@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime"
 	"strings"
 	"time"
 
@@ -147,10 +148,10 @@ func (d *Device) Open() error {
 
 	var err error
 	d.h, err = d.dev.Open()
-	if d.USBDebug {
-		log.Printf("USB: Open, err: %v", err)
-	}
 	if err != nil {
+		if d.USBDebug {
+			log.Printf("USB: Open, err: %v", err)
+		}
 		return err
 	}
 
@@ -176,6 +177,11 @@ func (d *Device) Open() error {
 		}
 	}
 
+	// claim not supported on windows??
+	// 2023/06/01 13:02:56 USB: ClaimInterface 0x0, err: LIBUSB_ERROR_NOT_SUPPORTED
+	if runtime.GOOS == "windows" {
+		return nil
+	}
 	return d.claim()
 }
 
