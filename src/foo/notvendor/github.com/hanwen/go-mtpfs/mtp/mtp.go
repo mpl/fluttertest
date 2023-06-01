@@ -14,6 +14,9 @@ import (
 	"github.com/hanwen/usb"
 )
 
+// comes from fs package. don't want to import fs for now because it causes problems on windows. but maybe fix later.
+const NOPARENT_ID = 0xFFFFFFFF
+
 // An MTP device.
 type Device struct {
 	h   *usb.DeviceHandle
