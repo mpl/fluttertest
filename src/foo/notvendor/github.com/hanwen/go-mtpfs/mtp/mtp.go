@@ -578,7 +578,9 @@ func (d *Device) Configure() error {
 
 func (d *Device) GetFileHandle(storageID, root uint32, filePath string) (uint32, error) {
 	currentDir := root
-	parts := strings.Split(filePath, string(os.PathSeparator))
+	// TODO: lol, do it with slashes for now, since the input is hardcoded with slashes too
+	//	parts := strings.Split(filePath, string(os.PathSeparator))
+	parts := strings.Split(filePath, "/")
 	// TODO: handle ".". just do a Clean?
 	if len(parts) < 1 {
 		return 0, errors.New("TODO: handle this")
