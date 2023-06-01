@@ -98,6 +98,7 @@ func getFile(filePath string) error {
 
 	id := sids.Values[0]
 
+	dev.USBDebug = true
 	fd, err := dev.GetFileHandle(id, mtp.NOPARENT_ID, filePath)
 	if err != nil {
 		return err

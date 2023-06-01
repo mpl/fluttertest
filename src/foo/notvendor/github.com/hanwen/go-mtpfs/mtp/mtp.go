@@ -584,6 +584,9 @@ func (d *Device) GetFileHandle(storageID, root uint32, filePath string) (uint32,
 		return 0, errors.New("TODO: handle this")
 	}
 	for k, partName := range parts {
+		if d.USBDebug {
+			println("LOOKING FOR PART: ", partName)
+		}
 		lastPart := k == len(parts)-1
 		handles := Uint32Array{}
 		// OFC_Undefined, OFC_Association ??
@@ -606,6 +609,9 @@ func (d *Device) GetFileHandle(storageID, root uint32, filePath string) (uint32,
 			}
 
 			if obj.Filename != partName {
+				if d.USBDebug {
+					println("NO MATCH: ", obj.Filename)
+				}
 				continue
 			}
 
