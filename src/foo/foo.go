@@ -98,13 +98,21 @@ func getFile(filePath string) error {
 
 	id := sids.Values[0]
 
-	dev.USBDebug = true
+	// dev.USBDebug = true
 	fd, err := dev.GetFileHandle(id, mtp.NOPARENT_ID, filePath)
 	if err != nil {
 		return err
 	}
 	println("FOUND HANDLE: ", fd)
 	return nil
+}
+
+func main() {
+	println("GO MAIN IS NOT CALLED BY DART")
+	println(listMTPDevices())
+	if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
+		println("ERROR: ", err.Error())
+	}
 }
 
 /*
@@ -228,10 +236,3 @@ func getFile(filePath string) error {
 
 }
 */
-
-func main() {
-	// println(listMTPDevices())
-	if err := getFile("Pictures/Screenshots/Screenshot_20171209-162420.png"); err != nil {
-		println("ERROR: ", err.Error())
-	}
-}

@@ -578,8 +578,7 @@ func (d *Device) Configure() error {
 
 func (d *Device) GetFileHandle(storageID, root uint32, filePath string) (uint32, error) {
 	currentDir := root
-	// TODO: lol, do it with slashes for now, since the input is hardcoded with slashes too
-	//	parts := strings.Split(filePath, string(os.PathSeparator))
+	// TODO: hmm, we're fetching from android, so it's always going to be slash separated, won't it?
 	parts := strings.Split(filePath, "/")
 	// TODO: handle ".". just do a Clean?
 	if len(parts) < 1 {
