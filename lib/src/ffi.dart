@@ -15,6 +15,10 @@ typedef get_file_func = ffi.Pointer<Utf8> Function(); // FFI fn signature
 typedef GetFile = ffi.Pointer<Utf8> Function(); // Dart fn signature
 
 void run() {
+	if (Platform.isAndroid) {
+		return;
+	}
+	
   // TODO: can we move this code in an init func or something? Probably have to do class BS. at least make this func a Once.
   // dyn lib file found at root of the project for now.
 	ffi.DynamicLibrary dylib;

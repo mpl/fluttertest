@@ -299,14 +299,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
-  libusb:
-    dependency: transitive
-    description:
-      name: libusb
-      sha256: ca24c95f475eb53fac4dcdcd754b5a0b1b04d0bbf744f61163ae5d59197471c6
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.23+2"
   lints:
     dependency: transitive
     description:
@@ -467,14 +459,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
-  quick_usb:
-    dependency: "direct main"
-    description:
-      name: quick_usb
-      sha256: ebc26ec1e9d74594441e03a86060a468197caba19e69060cf0e86348930b9ac4
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.1"
   shelf:
     dependency: "direct main"
     description:
