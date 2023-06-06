@@ -1,5 +1,6 @@
-import 'src/myapp.dart';
-import 'fficheck.dart'; // TODO: move to src as well?
+import 'src/myapp.dart' as gui;
+import 'src/server.dart' as myserver;
+import 'src/ffi.dart' as myffi;
 
 import 'dart:async';
 import 'dart:io' show Platform;
@@ -8,14 +9,26 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:quick_usb/quick_usb.dart';
 
 void main() async {
-	testffi();
 	// Avoid errors caused by flutter upgrade.
 	// Importing 'package:flutter/widgets.dart' is required.
 	WidgetsFlutterBinding.ensureInitialized();
 
+	DBStuff();
+
+	MTPStuff();
+
+	myserver.startServer();
+
+	runApp(const gui.MyApp());
+}
+
+void MTPStuff() {
+	myffi.run();
+}
+
+void DBStuff() async {
 	if (Platform.isWindows || Platform.isLinux) {
 		// Initialize FFI
 		sqfliteFfiInit();
@@ -148,17 +161,6 @@ void main() async {
 	);
 	await insertDog(taz);
 	print(await dogs());
-
-/*
-	await QuickUsb.init();
-
-	var deviceList = await QuickUsb.getDeviceList();
-	print("DEVICES: $deviceList");
-
-	await QuickUsb.exit();
-*/
-
-	runApp(const MyApp());
 }
 
 class Dog {

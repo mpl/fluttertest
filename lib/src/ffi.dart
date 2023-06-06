@@ -1,4 +1,4 @@
-//file name fficheck.dart
+//file name ffi.dart
 import 'dart:ffi' as ffi; // For FFI
 import 'dart:io' show Platform;
 
@@ -14,8 +14,8 @@ typedef GetKey = ffi.Pointer<Utf8> Function(); // Dart fn signature
 typedef get_file_func = ffi.Pointer<Utf8> Function(); // FFI fn signature
 typedef GetFile = ffi.Pointer<Utf8> Function(); // Dart fn signature
 
-void testffi() {
-  // TODO: can we move this code in an init func or something? Probably have to do class BS.
+void run() {
+  // TODO: can we move this code in an init func or something? Probably have to do class BS. at least make this func a Once.
   // dyn lib file found at root of the project for now.
 	ffi.DynamicLibrary dylib;
 	if (Platform.isWindows) {
@@ -23,14 +23,20 @@ void testffi() {
 	} else {
 		dylib = ffi.DynamicLibrary.open('foo.so');
 	}
+	number(dylib);
+	mtp(dylib);
+}
 
+void number(ffi.DynamicLibrary dylib) {
 	final GetKey getKey = dylib.lookup<ffi.NativeFunction<get_key_func>>('GetKey').asFunction();
-	// final GetMTPInfo getMTPInfo = dylib.lookup<ffi.NativeFunction<get_mtpinfo_func>>('GetMTPInfo').asFunction();
-	final GetFile getFile = dylib.lookup<ffi.NativeFunction<get_file_func>>('GetFile').asFunction();
 
-	print("TESTFFI");
 	ffi.Pointer<Utf8> theKey = getKey();
 	print(theKey.toDartString());
+}
+
+void mtp(ffi.DynamicLibrary dylib) {
+	// final GetMTPInfo getMTPInfo = dylib.lookup<ffi.NativeFunction<get_mtpinfo_func>>('GetMTPInfo').asFunction();
+	final GetFile getFile = dylib.lookup<ffi.NativeFunction<get_file_func>>('GetFile').asFunction();
 
 	ffi.Pointer<Utf8> theFile = getFile();
 	print(theFile.toDartString());
